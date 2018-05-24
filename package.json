@@ -1,0 +1,38 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "A simple weather dashboard come with responsive",
+  "main": "./dist/server.js",
+  "scripts": {
+    "build": "webpack",
+    "build-babel": "npm run build-babel-server && npm run build-babel-client",
+    "build-babel-server": "babel src/server --out-dir ./dist",
+    "build-babel-client": "babel src/client --copy-files --out-dir ./dist/public",
+    "clean": "rimraf dist node_modules",
+    "start": "node ./dist/server.js",
+    "test": "jest ./src"
+  },
+  "author": "cchitsiang",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "convict": "^4.2.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.5",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
+  }
+}
