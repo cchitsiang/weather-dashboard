@@ -14,11 +14,10 @@ class WeatherService {
 		const { lat, lng } = req.query;
 		const query = `${Number(lat).toFixed(2)},${Number(lng).toFixed(2)}`;
 		try {
-
 			const uri = `${apiUrl}${query}`;
 			result = await request({ uri, json: true });
 			if (result && !result.error) {
-				await Redis.set(query, result);
+				await Redis.set(query, JSON.stringify(result));
 			}
 		} catch (e) {
 			result = null;
