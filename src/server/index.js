@@ -5,6 +5,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 
+import config from './config';
+import WeatherService from './services/weather.service'
+
 function middlewares(app) {
 	app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -30,16 +33,19 @@ function middlewares(app) {
 		stream: process.stdout
 	}));
 
-	app.use(function (req, res, next) {
-		res.status(404).send({ status: 404, message: 'Not Found' });
-	});
 }
 function routes(app) {
 	app.get('/health', function (req, res, next) {
 		res.send('OK');
 	});
 
-	const port = 8080;
+	app.get('/api/weather', WeatherService.getWeather);
+
+	app.use(function (req, res, next) {
+		res.status(404).send({ status: 404, message: 'Not Found' });
+	});
+
+	const port = config.get('port');
 	app.listen(port, () => {
 		console.log(`App listening to port *:${port}. press ctrl + c to cancel`)
 	});

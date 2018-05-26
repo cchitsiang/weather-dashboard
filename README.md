@@ -1,5 +1,3 @@
-
-# Setup
-1. npm install
-2. npm run build
-3. npm start
+# Build & Run
+1. make build
+2. make up
